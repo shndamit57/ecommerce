@@ -2,21 +2,40 @@ const CartRepository = require("../repositories/cartRepository");
 
 const CartService = {
   async addItemToCart(itemData) {
-    return CartRepository.addItem(itemData);
+    let productCartInfo = await CartRepository.getProductCartInfo(itemData.productId);
+    if (productCartInfo[0]?.quantity >= productCartInfo[0]?.productDetails?.quantity) {
+      return 'Cart Full'
+    }
+    await CartRepository.addItem(itemData);
+    return this.getCartItems();
   },
 
   async removeItemFromCart(productId) {
-    return CartRepository.removeItem(productId);
+    await CartRepository.removeItem(productId);
+    return this.getCartItems();
   },
 
   async getCartItems() {
-    return CartRepository.getCartItems();
+    let cartItems = await CartRepository.getCartItems();
+    cartItems = cartItems.map(item => {
+      return {
+        _id: item._id,
+        productId: item.productId,
+        quantity: item.quantity,
+        image: item.productDetails.image,
+        name: item.productDetails.name,
+        price: item.productDetails.price,
+        maxQuantity: item.productDetails.quantity
+      }
+    })
+    return cartItems
   },
 
-  async updateCartItem(productId,itemData) {
+  async updateCartItem(productId, quantity) {
     let item = await CartRepository.findOneItem(productId);
-    itemData.quantity += item.quantity
-    return CartRepository.updateItem(productId,itemData);
+    quantity += item.quantity;
+    await CartRepository.updateItem(productId, quantity);
+    return this.getCartItems();
   },
 };
 
