@@ -1,5 +1,5 @@
 #   To start client
-    cd shopping-cart
+    cd client
     npm start
 
 #   To start server
