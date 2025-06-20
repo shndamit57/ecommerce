@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-DPsg6Az0x4zi3Y0w6W/ayqMfO3r+1w/+uAgaK6pTf2Lv4mGAPzrghMVJl9RqttHyai0jWwfUQQ5rcu81mHI0lw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <div class="pdf-gallery">
+    <div class="pdf-gallery-child">
+      <img class="pdf-gallery-child-image" src="bhumik_logistics_header.jpg" alt="Bhumik Logistics Header" />
+    </div>
+
+    <div class="pdf-gallery-child image-container">
+      <img class="pdf-gallery-child-image" src="introduce_Bhumik.jpg" alt="Bhumik Logistics Intro">
+      <img src="bhumik_logistics_logo.jpg" alt="Bhumik Logistics Logo" class="logo">
+      <div class="bottom-text">Allow us to introduce Bhumik Logistics, your trusted partner for comprehensive logistics
+        solutions. We are a vibrant company driven by a passionate sales team and experienced operational specialists,
+        offering a full spectrum of services under one roof.</div>
+    </div>
+    <section class="features">
+      <h2 class="section-heading">Here's why Bhumik Logistics stands out:</h2>
+      <div class="features-grid">
+
+        <div class="feature-item">
+          <h3>International Express:</h3>
+          <i class="fas fa-plane icon"></i>
+          <p>We ensure rapid global delivery through our partnerships with DHL, UPS and FEDEX.</p>
+        </div>
+
+        <div class="feature-item">
+          <h3>Global Sea & Air Freight:</h3>
+          <i class="fas fa-ship icon"></i>
+          <p>We provide dependable freight solutions customized to your specific requirements.</p>
+        </div>
+
+        <div class="feature-item">
+          <h3>Customs Brokerage:</h3>
+          <i class="fas fa-file-invoice icon"></i>
+          <p>Our expertise ensures a smooth and hassle-free customs clearance process.</p>
+        </div>
+
+        <div class="feature-item">
+          <h3>Inland Transportation:</h3>
+          <i class="fas fa-truck icon"></i>
+          <p>We manage effecient and seamless logistics within India.</p>
+        </div>
+
+        <div class="feature-item">
+          <h3>Warehousing & Distribution:</h3>
+          <i class="fas fa-warehouse icon"></i>
+          <p>Benefit from our effecient storage and distribution networks.</p>
+        </div>
+
+        <div class="feature-item">
+          <h3>Cross Border Trucking:</h3>
+          <i class="fas fa-road icon"></i>
+          <p>We facilitate effortless movement of goods across borders.</p>
+        </div>
+
+        <div class="feature-item">
+          <h3>Worldwide Door-to-Door Services:</h3>
+          <i class="fas fa-globe icon"></i>
+          <p>Our extensive global network ensures convenient door-to-door delivery worldwide.</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <div class="pdf-gallery-child image-container">
+      <img class="experience-image" src="bhumik_logistics_experience.png" alt="Sample Image" />
+      <div class="caption">
+        Backed by over 15 years of experience in shipping, consolidation logistics, and freight forwarding, we are
+        highly competitive in managing DDP/DDU/Door Delivery shipments.<br>
+        A key area of focus is our inbound LCL Groupage service, bringing goods from worldwide origins to Indian
+        ports.<br><br>
+        Our dedicated team is committed to providing unparalleled support, meticulously addressing your logistics needs
+        with precision and attentiveness.
+        Whether you have immediate shipping requirements or need ongoing logistics assistance, we are here to support
+        you throughout the entire process.
+      </div>
+    </div>
+
+
+    <div class="pdf-gallery-child">
+      <img class="pdf-gallery-child-image" src="bhumik_logistics_contact.webp" alt="Bhumik Logistics Contact" />
+    </div>
+
+    <div class="pdf-gallery-child">
+      <img class="pdf-gallery-child-image" src="bhumik_logistics_contactInfo.png"
+        alt="Bhumik Logistics Contact Information" />
+    </div>
+
+    <section class="contact-section">
+      <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+      <form class="contact-form" action="/contact" method="POST" novalidate>
+        <div class="form-group">
+          <label for="name"><i class="fas fa-user"></i> Name</label>
+          <input type="text" id="name" name="name" required minlength="2" placeholder="Your full name" />
+        </div>
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope-open"></i> Email</label>
+          <input type="email" id="email" name="email" required placeholder="example@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+          <input type="tel" id="phone" name="phone" required pattern="[0-9]{8,15}" placeholder="8-15 digit number" />
+        </div>
+        <div class="form-group">
+          <label for="message"><i class="fas fa-comment"></i> Message</label>
+          <textarea id="message" name="message" rows="4" required placeholder="How can we help you?"></textarea>
+        </div>
+        <div id="form-alert" class="form-alert" style="display: none;">
+        </div>
+
+        <button type="submit"><i class="fas fa-paper-plane white"></i> Send Message</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    const form = document.querySelector('.contact-form');
+    const alertBox = document.getElementById('form-alert');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const invalidFields = [];
+      const inputs = form.querySelectorAll('input, textarea');
+
+      inputs.forEach(input => {
+        if (!input.checkValidity()) {
+          const label = form.querySelector(`label[for="${input.id}"]`);
+          const labelText = label ? label.textContent.trim() : input.name;
+          invalidFields.push(labelText);
+        }
+      });
+
+      if (invalidFields.length > 0) {
+        const errorList = invalidFields.map(field => `<li>${field}</li>`).join('');
+        alertBox.innerHTML = `
+        <div><i class="fas fa-exclamation-triangle"></i> Please correct the following fields:</div>
+        <ul style="margin-left: 20px;">${errorList}</ul>
+      `;
+        alertBox.style.display = 'flex';
+        alertBox.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      alertBox.style.display = 'none';
+
+      const formData = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        message: form.message.value
+      };
+
+      try {
+        const response = await fetch('https://bhumiklogistics.onrender.com/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alertBox.innerHTML = `<div style="color: green;"><i class="fas fa-check-circle"></i> ${result.message}</div>`;
+          alertBox.style.display = 'flex';
+          form.reset();
+        } else {
+          alertBox.innerHTML = `<div style="color: red;"><i class="fas fa-exclamation-triangle"></i> ${result.message || 'Something went wrong.'}</div>`;
+          alertBox.style.display = 'flex';
+        }
+
+      } catch (err) {
+        alertBox.innerHTML = `<div style="color: red;"><i class="fas fa-exclamation-triangle"></i> Failed to send message. Please try again later.</div>`;
+        alertBox.style.display = 'flex';
+      }
+    });
+  </script>
+
+  <script>
+    // Reveal animations when in viewport
+    const animatedItems = document.querySelectorAll('.feature-item, .pdf-gallery-child, .section-heading, .contact-form');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    animatedItems.forEach(item => {
+      item.style.animationPlayState = 'paused';
+      observer.observe(item);
+    });
+  </script>
+
+
+</body>
+
+</html>
